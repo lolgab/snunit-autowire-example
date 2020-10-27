@@ -1,0 +1,24 @@
+{
+  "listeners": {
+    "*:80": {
+      "pass": "routes"
+    }
+  },
+  "routes": [
+    {
+      "action": {
+        "share": "/www",
+        "fallback": {
+          "pass": "applications/example"
+        }
+      }
+    }
+  ],
+  "applications": {
+    "example": {
+      "type": "external",
+      "working_directory": "/app",
+      "executable": "example"
+    }
+  }
+}
