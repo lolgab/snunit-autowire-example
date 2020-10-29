@@ -11,7 +11,26 @@ This is an example basic TODO application using the following technologies:
 
 ## Getting Started
 
-You need to make sure you have Sbt 1.4.0 with sbtn in your `PATH`.
+You need to make sure you have Sbt 1.4+ with `sbtn` in your `PATH`.
+
+### Running locally
+
+You need to install Unit and run it as daemon:
+
+```bash
+unitd
+```
+
+Then you can build and run locally using the build-dev.sh script:
+
+```bash
+./build-dev.sh
+```
+
+You can then open your browser on `http://127.0.0.1:8080`
+
+### Running on Docker
+
 You can build a Docker image running:
 
 ```bash
