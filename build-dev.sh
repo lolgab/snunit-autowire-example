@@ -9,7 +9,7 @@ port=8080
 # compilation cache using these commands:
 
 # sbtn reload
-# rm -rf example/native/target/scala-2.11/native/**.o
+# find example/native/target/scala-2.11/native -type f -name '*.o' -exec rm {} +
 
 sbtn "exampleJS/fastOptJS;exampleNative/nativeLink"
 
