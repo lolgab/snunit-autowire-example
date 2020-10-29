@@ -45,5 +45,7 @@ docker build -t example-app .
 You can the run the application with:
 
 ```bash
-docker run --rm -p 80:80 example-app
+docker run --rm -p 8080:8080 example-app
 ```
+
+You can then open your browser on `http://127.0.0.1:8080`
