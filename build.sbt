@@ -13,12 +13,11 @@ lazy val example = crossProject(JVMPlatform, JSPlatform, NativePlatform)
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "upickle" % "1.2.2",
       "com.lihaoyi" %%% "pprint" % "0.6.0",
-      "org.scalameta" %%% "munit" % "0.7.14" % Test,
+      "org.scalameta" %%% "munit" % "0.7.20" % Test
     ),
     testFrameworks += new TestFramework("munit.Framework")
   )
   .jvmSettings(
-
   )
   .jsSettings(
     scalaJSUseMainModuleInitializer := true,
@@ -41,5 +40,5 @@ lazy val example = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   )
   .platformsSettings(NativePlatform, JVMPlatform)(
     Compile / unmanagedSourceDirectories += baseDirectory.value / ".." / "native-jvm" / "src" / "main" / "scala",
-    Test    / unmanagedSourceDirectories += baseDirectory.value / ".." / "native-jvm" / "src" / "test" / "scala",
+    Test / unmanagedSourceDirectories += baseDirectory.value / ".." / "native-jvm" / "src" / "test" / "scala"
   )

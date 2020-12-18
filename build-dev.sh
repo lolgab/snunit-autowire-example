@@ -19,7 +19,7 @@ cp example/native/target/scala-2.11/example-out target/app/example
 cp example/js/target/scala-2.13/example-fastopt.js target/www/index.js
 
 config='{'
-config+='  "listeners": {' 
+config+='  "listeners": {'
 config+='    "*:'$port'": {'
 config+='      "pass": "routes"'
 config+='    }'
