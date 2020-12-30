@@ -11,7 +11,7 @@ object Main {
   def main(args: Array[String]): Unit = {
     AsyncServerBuilder()
       .withAutowireRouter(UpickleAutowireServer.route[Api](ApiImpl))
-      .withRequestHandler { r => r.send(404, "Not found", Seq.empty) }
+      .withRequestHandler(_.send(StatusCode.NotFound, "Not found", Seq.empty))
       .build()
   }
 }

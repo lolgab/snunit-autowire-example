@@ -1,6 +1,6 @@
 enablePlugins(ScalaNativePlugin)
 
-val snunitVersion = "0.0.2"
+val snunitVersion = "0.0.3"
 
 inThisBuild(Seq(scalaVersion := "2.11.12"))
 
