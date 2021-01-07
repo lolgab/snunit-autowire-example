@@ -1,6 +1,6 @@
 enablePlugins(ScalaNativePlugin)
 
-val snunitVersion = "0.0.3"
+val snunitVersion = "0.0.4"
 
 inThisBuild(Seq(scalaVersion := "2.11.12"))
 
@@ -12,7 +12,6 @@ lazy val example = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   .settings(
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "upickle" % "1.2.2",
-      "com.lihaoyi" %%% "pprint" % "0.6.0",
       "org.scalameta" %%% "munit" % "0.7.20" % Test
     ),
     testFrameworks += new TestFramework("munit.Framework")
