@@ -3,6 +3,6 @@
 
 # Allow files and directories
 !/example/js/target/scala-2.13/example-fastopt.js
-!/example/native/target/scala-2.11/example-out
+!/example/native/target/scala-2.13/example-out
 !/config.json
 !/www

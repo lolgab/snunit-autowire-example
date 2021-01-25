@@ -39,7 +39,7 @@ You can build a Docker image running:
 docker build -t clang --file Dockerfile.clang .
 
 # To build the actual application:
-docker build -t example-app .
+./build-dev.sh
 ```
 
 You can the run the application with:
