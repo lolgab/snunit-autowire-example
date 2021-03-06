@@ -5,6 +5,6 @@ import org.scalajs.dom.document
 
 object Main {
   def main(args: Array[String]): Unit = {
-    render(document.getElementById("app-container"), TodoMvcApp.render())
+    render(document.getElementById("app-container"), TodoMvcApp())
   }
 }

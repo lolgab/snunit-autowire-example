@@ -1,6 +1,6 @@
 enablePlugins(ScalaNativePlugin)
 
-val snunitVersion = "0.0.5"
+val snunitVersion = "0.0.7"
 
 ThisBuild / scalaVersion := "2.13.4"
 
@@ -11,7 +11,7 @@ lazy val root = project
 lazy val example = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   .settings(
     libraryDependencies ++= Seq(
-      "org.scalameta" %%% "munit" % "0.7.21" % Test
+      "org.scalameta" %%% "munit" % "0.7.22" % Test
     ),
     testFrameworks += new TestFramework("munit.Framework")
   )
@@ -19,7 +19,7 @@ lazy val example = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   )
   .jsSettings(
     scalaJSUseMainModuleInitializer := true,
-    libraryDependencies += "com.raquo" %%% "laminar" % "0.11.0"
+    libraryDependencies += "com.raquo" %%% "laminar" % "0.12.0"
   )
   .nativeSettings(
     libraryDependencies ++= Seq(
@@ -31,10 +31,10 @@ lazy val example = crossProject(JVMPlatform, JSPlatform, NativePlatform)
     Test / nativeLinkStubs := true
   )
   .platformsSettings(NativePlatform, JSPlatform)(
-    libraryDependencies += "com.github.lolgab" %%% "autowire" % "0.3.2"
+    libraryDependencies += "com.lihaoyi" %%% "autowire" % "0.3.3"
   )
   .platformsSettings(JVMPlatform, JSPlatform)(
-    libraryDependencies += "com.lihaoyi" %%% "upickle" % "1.2.2"
+    libraryDependencies += "com.lihaoyi" %%% "upickle" % "1.2.3"
   )
   .platformsSettings(NativePlatform, JVMPlatform)(
     Compile / unmanagedSourceDirectories += baseDirectory.value / ".." / "native-jvm" / "src" / "main" / "scala",
