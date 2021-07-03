@@ -15,7 +15,7 @@ You need to make sure you have Sbt 1.4+ with `sbtn` in your `PATH`.
 
 ### Running locally
 
-You need to install Unit and run it as daemon:
+You need to install Unit 1.24.0 and run it as daemon:
 
 ```bash
 unitd
@@ -34,12 +34,7 @@ You can then open your browser on `http://127.0.0.1:8080`
 You can build a Docker image running:
 
 ```bash
-# To create the clang docker image used to link a Scala Native
-# Linux binary from Mac too:
-docker build -t clang --file Dockerfile.clang .
-
-# To build the actual application:
-./build-dev.sh
+./build.sh
 ```
 
 You can the run the application with:

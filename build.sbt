@@ -1,6 +1,6 @@
 enablePlugins(ScalaNativePlugin)
 
-val snunitVersion = "0.0.7"
+val snunitVersion = "0.0.9"
 
 ThisBuild / scalaVersion := "2.13.4"
 
