@@ -2,21 +2,23 @@
 
 set -e
 
-port=8080
+export SBT_NATIVE_CLIENT=true
+port=8081
 
 # When we switch between different operative systems
-# we need to manually wipe the Scala Native c files
+# we need to manually wipe the Scala Native C files
 # compilation cache using these commands:
 
-# sbtn reload
+# sbt reload
 # find example/native/target/scala-2.13/native -type f -name '*.o' -exec rm {} +
 
-sbtn "exampleJS/fastOptJS;exampleNative/nativeLink"
+# sbt frontend/fastLinkJS
+# sbt backendNative/nativeLink
 
 rm -rf target/www target/app
 mkdir -p target/www target/app
-cp example/native/target/scala-2.13/example-out target/app/example
-cp example/js/target/scala-2.13/example-fastopt.js target/www/index.js
+cp backend/native/target/scala-2.13/backend-out target/app/example
+cp -r frontend/target/scala-2.13/frontend-fastopt/ target/www/
 
 config='{'
 config+='  "listeners": {'
@@ -27,9 +29,9 @@ config+='  },'
 config+='  "routes": ['
 config+='    {'
 config+='      "action": {'
-config+='        "share": "'$PWD/www'",'
+config+='        "share": "'$PWD/www'$uri",'
 config+='        "fallback": {'
-config+='          "share": "'$PWD/target/www'",'
+config+='          "share": "'$PWD/target/www'$uri",'
 config+='          "fallback": {'
 config+='            "pass": "applications/example"'
 config+='          }'
@@ -40,8 +42,7 @@ config+='  ],'
 config+='  "applications": {'
 config+='    "example": {'
 config+='      "type": "external",'
-config+='      "working_directory": "'$PWD/target/app'",'
-config+='      "executable": "example"'
+config+='      "executable": "'$PWD'/target/app/example"'
 config+='    }'
 config+='  }'
 config+='}'
