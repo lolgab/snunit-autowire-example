@@ -2,13 +2,14 @@
 
 set -e
 
+export SBT_NATIVE_CLIENT=true
 port=8080
 
 # When we switch between different operative systems
 # we need to manually wipe the Scala Native c files
 # compilation cache using these commands:
 
-# sbtn reload
+# sbt reload
 # find example/native/target/scala-2.13/native -type f -name '*.o' -exec rm {} +
 
 sbtn "exampleJS/fastOptJS;exampleNative/nativeLink"
@@ -27,9 +28,9 @@ config+='  },'
 config+='  "routes": ['
 config+='    {'
 config+='      "action": {'
-config+='        "share": "'$PWD/www'",'
+config+='        "share": "'$PWD/www'$uri",'
 config+='        "fallback": {'
-config+='          "share": "'$PWD/target/www'",'
+config+='          "share": "'$PWD/target/www'$uri",'
 config+='          "fallback": {'
 config+='            "pass": "applications/example"'
 config+='          }'
@@ -40,8 +41,7 @@ config+='  ],'
 config+='  "applications": {'
 config+='    "example": {'
 config+='      "type": "external",'
-config+='      "working_directory": "'$PWD/target/app'",'
-config+='      "executable": "example"'
+config+='      "executable": "'$PWD'/target/app/example"'
 config+='    }'
 config+='  }'
 config+='}'

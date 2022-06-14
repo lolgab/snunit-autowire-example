@@ -11,14 +11,14 @@ This is an example basic TODO application using the following technologies:
 
 ## Getting Started
 
-You need to make sure you have Sbt 1.4+ with `sbtn` in your `PATH`.
+You need to make sure you have installed Sbt 1.4+
 
 ### Running locally
 
 You need to install Unit 1.24.0 and run it as daemon:
 
 ```bash
-unitd
+unitd --no-daemon --log /dev/stdout
 ```
 
 Then you can build and run locally using the build-dev.sh script:
