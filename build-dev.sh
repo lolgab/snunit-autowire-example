@@ -3,22 +3,21 @@
 set -e
 
 export SBT_NATIVE_CLIENT=true
-port=8081
+port=8080
 
 # When we switch between different operative systems
-# we need to manually wipe the Scala Native C files
+# we need to manually wipe the Scala Native c files
 # compilation cache using these commands:
 
 # sbt reload
 # find example/native/target/scala-2.13/native -type f -name '*.o' -exec rm {} +
 
-# sbt frontend/fastLinkJS
-# sbt backendNative/nativeLink
+sbtn "exampleJS/fastOptJS;exampleNative/nativeLink"
 
 rm -rf target/www target/app
 mkdir -p target/www target/app
-cp backend/native/target/scala-2.13/backend-out target/app/example
-cp -r frontend/target/scala-2.13/frontend-fastopt/ target/www/
+cp example/native/target/scala-2.13/example-out target/app/example
+cp example/js/target/scala-2.13/example-fastopt.js target/www/index.js
 
 config='{'
 config+='  "listeners": {'

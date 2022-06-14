@@ -1,16 +1,11 @@
-FROM lolgab/scala-native-docker as builder
+FROM nginx/unit:1.24.0-minimal
 
-COPY . .
-RUN sbt frontend/fastLinkJS
-RUN sbt backendNative/nativeLink
-
-FROM nginx/unit:1.27.0-minimal
+RUN apt-get update && apt-get install -y libuv1
 
 COPY /config.json /docker-entrypoint.d/
 COPY /www /www
-
-COPY --from=builder frontend/target/scala-2.13/frontend-fastopt/ /www/
+COPY example/js/target/scala-2.13/example-fastopt.js /www/index.js
 RUN chmod -R 777 /www
-COPY --from=builder backend/native/target/scala-2.13/example-out /app/todo
+COPY example/native/target/scala-2.13/example-out /app/example
 
-EXPOSE 8081
+EXPOSE 8080

@@ -29,41 +29,11 @@ chmod +x target/clang++.sh
 
 # We are using our clang scripts that call clang inside
 # docker so we can compile linux binaries from Mac
-sbt frontend/fastLinkJS
-sbt "set backend.native / nativeClang := file(\"./target/clang.sh\")"
-sbt "set backend.native / nativeClangPP := file(\"./target/clang++.sh\")"
-sbt backendNative/nativeLink
-
-config='{'
-config+='  "listeners": {'
-config+='    "*:'$port'": {'
-config+='      "pass": "routes"'
-config+='    }'
-config+='  },'
-config+='  "routes": ['
-config+='    {'
-config+='      "action": {'
-config+='        "share": "'$PWD/www'$uri",'
-config+='        "fallback": {'
-config+='          "share": "'$PWD/target/www'$uri",'
-config+='          "fallback": {'
-config+='            "pass": "applications/todos"'
-config+='          }'
-config+='        }'
-config+='      }'
-config+='    }'
-config+='  ],'
-config+='  "applications": {'
-config+='    "todos": {'
-config+='      "type": "external",'
-config+='      "executable": "'$PWD'/target/app/example"'
-config+='    }'
-config+='  }'
-config+='}'
-
-curl -X PUT \
-     --data-binary "$config" \
-     --unix-socket /usr/local/var/run/unit/control.sock \
-     http://localhost/config
+sbt "frontend/fastLinkJS; \
+     set backend.native / nativeMode := \"release-fast\"; \
+     set backend.native / nativeLTO := \"thin\"; \
+     set backend.native / nativeClang := file(\"./target/clang.sh\"); \
+     set backend.native / nativeClangPP := file(\"./target/clang++.sh\"); \
+     backendNative/nativeLink"
 
 docker build -t example-app .
